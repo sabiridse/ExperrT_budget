@@ -1,39 +1,32 @@
 package ru.experrt.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import ru.experrt.Response;
 import ru.experrt.entity.Days;
 import ru.experrt.services.DaysService;
 
-@Controller
+@RestController
 public class DaysController {
 
 	 @Autowired
-	    DaysService daysService;
+	    DaysService daysServ;
+	 //private static List<Days> daysList = new ArrayList<Days>();	
 	
-	 @RequestMapping(value = "/list")
-	    public @ResponseBody Map<String, Object> getAll(Days dayss) {
-	        Map<String, Object> map = new HashMap<String, Object>();
 	 
-	        List<Days> list = daysService.list();
+	 @PostMapping(value = "/newDay")
+		public void createEmployee(@RequestBody Days day) {
+			daysServ.save(day);
+		}
 	 
-	        if (list != null) {
-	            map.put("status", "200");
-	            map.put("message", "Data found");
-	            map.put("data", list);
-	        } else {
-	            map.put("status", "404");
-	            map.put("message", "Data not found");
-	 
-	        }
-	 
-	        return map;
+	 @GetMapping(value = "/getCategoryList")
+	   public Response getAll() {
+		 Response response = new Response("Done", daysServ.findAll());
+			return response;		
 	    }
+
 }

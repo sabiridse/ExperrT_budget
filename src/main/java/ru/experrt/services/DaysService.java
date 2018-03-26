@@ -1,9 +1,11 @@
 package ru.experrt.services;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.experrt.dao.DaysDao;
+
+import ru.experrt.dao.DaysRepository;
 import ru.experrt.entity.Days;
 
 
@@ -11,15 +13,20 @@ import ru.experrt.entity.Days;
 public class DaysService {
 
 	@Autowired
-    DaysDao daysDao;
+    DaysRepository daysRepo;	
+
+/*to save an employee*/
 	
-	 public boolean saveOrUpdate(Days days) {
-	        return daysDao.saveOrUpdate(days);
-	    }
-	 
-	    public List<Days> list() {
-	       
-	        return daysDao.list();
-	    }
+	public Days save(Days days) {
+		return daysRepo.save(days);
+	}
+	
+	
+	/* search all employees*/
+	
+	public List<Days> findAll(){
+		return daysRepo.findAll();
+	}
+	
 	
 }
