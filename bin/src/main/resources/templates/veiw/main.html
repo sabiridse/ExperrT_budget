@@ -8,6 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/style.css" type="text/css" /> 
 <style>
    body {
     background: url(img/binCode.jpg) no-repeat center center fixed;
@@ -15,7 +16,7 @@
    }
   </style>
 </head>
-<body onload="load()">
+<body>
 <nav class="navbar sticky-top navbar-expand-md navbar-light bg-primary">	
 	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,47 +24,77 @@
 	<a class="navbar-brand" href="#" >
 			<img src="img/Ex5.png" width="30" height="30" alt="logo">
 		</a>
-	<div class="collapse navbar-collapse  justify-content-center" id="navbarSupportedContent">
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="nav">
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="btn btn-primary btn-lg ml-2" href="/">На главную</a>
-			</li>			
-			<li class="nav-item">
-				<a class="btn btn-primary btn-lg ml-2" href="/hotPoints">Горячие точки</a>
-			</li>
-			<li class="nav-item">
-				<a class="btn btn-primary btn-lg ml-2" href="/properties">Настройки</a>
 			</li>
 			<li class="nav-item">
 				<a id="newlist" class="btn btn-primary btn-lg ml-2" href="#">В новой вкладке</a>
-			</li>		
+			</li>
+			<li class="nav-item">
+				<a id="testo" class="btn btn-primary btn-lg ml-2" href="hello">Хеллоу</a>
+			</li>
+			<li class="nav-item">
+				<a id="testo" class="btn btn-primary btn-lg ml-2" href="godbay">Гудбай</a>
+			</li>	
+			<li class="nav-item">
+				<a id="testo" class="btn btn-primary btn-lg ml-2" href="testPage">Для теста</a>
+			</li>	
 		</ul>	
 	</div>
 </nav>
-
+<nav class="navbar fixed-bottom navbar-expand-md navbar-light" style="background-color: #2E8B57; opacity: 0.7">
+	<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#bottomNavbar" aria-controls="bottomNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse justify-content-center" id="bottomNavbar">
+					<ul class="nav">
+						<li class="nav-item">
+							<div class="input-group" >
+							    <select class="custom-select" id="inputGroupSelect04">
+									    <option selected>Строк</option>
+									    <option value="1">1</option>
+									    <option value="2">5</option>
+									    <option value="3">10</option>
+									    <option value="3">30</option>
+							 	</select>
+							 	<div class="input-group-append">
+								    	<button class="btn btn-primary ml-2" type="button">Добавить</button>
+								</div>				
+							</div>
+						</li>	
+					</ul>	
+	  </div>
+</nav>
 <div class="container">
   	<div class="row">
-  		<div class="col-md-2">
-  			<div class="row">
-	  			<label class="mt-5 text-center">Добавить новую категорию</label>
-	   			<input class="form-control mt-1 w-100" id="newCategory">
-				<button class="btn btn-primary mt-1 w-100" type="button" id="addNewCategory">Добавить</button>  		
-	  		</div>
-	  		<div class="row">
-	  			<label class="mt-5 text-center">Выберите дату</label>
-	  			<input class="form-control" type="date" id="newDate">
-	   			<label class="mt-2 text-center">Выберите категорию</label>
-	   			<select class="custom-select mt-1" id="categorySelect">
-				</select>
-				<label class="mt-2 text-center">Укажите сумму</label>
-				<input class="form-control mt-1" id="newSumm">
-				<label class="mt-2 text-center">Примечание</label>
-				<input class="form-control mt-1" id="newOther">
-				<button class="btn btn-primary mt-1 w-100" type="button" id="addNewSumm">Добавить</button>
-			</div>
+  		<div class="col-md">
+	  		<table id="hotPointsTable" class="table table-striped">
+					<thead class="thead-dark">
+						<tr>
+							<th><b>Дата</b></th>
+							<th><b>Остаток</b></th>
+						</tr>
+					</thead>
+					<tbody id="tableHot" >
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+						<tr class='tr'><td>19.03.2018</td><td>12700</td></tr>
+					</tbody>        
+			</table>
    		</div>	  
 	   	 <div class="col-md-8">
-	      	<table id="mainTable" class="table table-striped mt-2">
+	      	<table id="mainTable" class="table table-striped">
 				<thead class="thead-dark">
 					<tr>
 						<th><b>Дата</b></th>
@@ -116,13 +147,13 @@
 				</tbody>        
 			</table>
 	   	 </div>
-	   	 <div class="col md-2">
-	   	 </div>
 	</div>
 </div>
 
  
-<script type="text/javascript" src="scripts/js/main.js"></script>
+<script type="text/javascript" src="scripts/js/testik.js"></script>
+<script type="text/javascript" src="scripts/js/test.js"></script>
+<script type="text/javascript" src="scripts/js/jquery.tablesorter.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>	
 </body>

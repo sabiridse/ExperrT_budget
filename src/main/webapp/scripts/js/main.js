@@ -59,11 +59,11 @@ $( document ).ready(function() {
 function addCategory(){
 	var inputData = {
 		id: 0, 	
-		dayOfWeek: $('#newCategory').val()
+		category: $('#newCategory').val()
 	}
 	$('#newCategory').val('');
 		$.ajax({
-			url:'newDay',
+			url:'newCategory',
 	        type:'POST',
 	        data : JSON.stringify(inputData),
 	        success: function(){
@@ -76,7 +76,7 @@ function addNewNoteByDays(){
 	var inputData = {
 		id: 0, 	
 		date: $('#newDate').val(),
-		category: $('#categorySelect').val(),
+		category: $('#categorySelect option:selected').text(),
 		summ: $('#newSumm').val(),
 		others: $('#newOther').val()		
 	}
@@ -97,18 +97,16 @@ function loadAllList(){
 		url:'getCategoryList',
         type:'GET',
 	    success: function(response){
-	    	//updateTable(response);
 	    	updateCategorys(response)
 	    }
 	})	
 }
 
 function updateCategorys(response){
-	//$('.tr').remove();
+	$('.op').remove();
     for(i=0; i<response.data.length; i++){                  
-       // $("#tableCat").append("<tr class='tr'> <td>" + response.data[i].id + "</td> <td> "+response.data[i].dayOfWeek+" </td> </tr>");
-        $( '#categorySelect' ).append( '<option value="' + i+1 + '">' + response.data[i].dayOfWeek + '</option>' );
+        $( '#categorySelect' ).append( '<option class="op" value="' + i+1 + '">' + response.data[i].category + '</option>' );
     }
-    $('#categorySelect').trigger("chosen:updated");
+   // $('#categorySelect').trigger("chosen:updated");
     //$("#categoryTable").trigger('update');
 }

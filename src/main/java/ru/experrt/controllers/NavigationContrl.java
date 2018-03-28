@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class NavigationContrl {
 
-	@RequestMapping(value = "/godbay")
-    public String getPage() {
-        return "veiw/bay";
+	@RequestMapping(value = "/hotPoints")
+    public String getHotPointsPage() {
+        return "veiw/hotPoints";
     }
 	
-	@RequestMapping(value = "/hello")
-    public String getPage1() {
-        return "forms/hello";
+	@RequestMapping(value = "/properties")
+    public String getPropPage() {
+        return "veiw/properties";
     }
 	
-	@RequestMapping(value = "/testPage")
-    public String getTestPage() {
-        return "forms/testPage";
-    }
+//	@RequestMapping(value = "/testPage")
+//    public String getTestPage() {
+//        return "forms/testPage";
+//    }
 	
 }

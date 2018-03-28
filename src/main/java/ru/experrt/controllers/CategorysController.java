@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.experrt.Response;
-import ru.experrt.entity.Days;
-import ru.experrt.services.DaysService;
+import ru.experrt.entity.Categorys;
+import ru.experrt.services.CategorysService;
 
 @RestController
-public class DaysController {
+public class CategorysController {
 
 	 @Autowired
-	    DaysService daysServ;
+	    CategorysService categorysServ;
 	 //private static List<Days> daysList = new ArrayList<Days>();	
 	
 	 
-	 @PostMapping(value = "/newDay")
-		public void createEmployee(@RequestBody Days day) {
-			daysServ.save(day);
+	 @PostMapping(value = "/newCategory")
+		public void createEmployee(@RequestBody Categorys categorys) {
+		 categorysServ.save(categorys);
 		}
 	 
 	 @GetMapping(value = "/getCategoryList")
 	   public Response getAll() {
-		 Response response = new Response("Done", daysServ.findAll());
+		 Response response = new Response("Done", categorysServ.findAll());
 			return response;		
 	    }
 
