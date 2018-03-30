@@ -3,7 +3,7 @@ function load(){
 	    scriptCharset: "utf-8" , 
 	    contentType: "application/json; charset=utf-8"
 	});
-	
+	loadDataForMainTable();
 	loadAllList();
 }
 
@@ -87,9 +87,33 @@ function addNewNoteByDays(){
 	        type:'POST',
 	        data : JSON.stringify(inputData),
 	        success: function(){
-		    	
+	        	loadDataForMainTable();
 		    }
 		}) 		
+}
+
+function loadDataForMainTable(){	
+	$.ajax({
+		url:'updateMainTable',
+        type:'GET',
+	    success: function(response){
+	    	updateMainTable(response);
+	    }
+	})	
+}
+
+function updateMainTable(response){
+	$('.tr').remove();
+	console.log(response.data.lenght);
+    for(i=0; i<response.data.length; i++){                  
+        $("#tableMain").append('<tr class="tr"> <td>' 
+        		+ response.data[i].date + "</td> <td> "
+        		+ response.data[i].prihod + "</td> <td> "
+        		+ response.data[i].rashod + "</td> <td> "
+        		+ response.data[i].ostatok + "</td> <td> "
+        		+ response.data[i].dayOfWeek +" </td> </tr>");
+    }
+    $("#mainTable").trigger('update');
 }
 
 function loadAllList(){	

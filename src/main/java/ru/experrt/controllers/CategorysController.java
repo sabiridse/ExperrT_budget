@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.experrt.Response;
 import ru.experrt.entity.Categorys;
+import ru.experrt.objects.Response;
 import ru.experrt.services.CategorysService;
 
 @RestController

@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.experrt.Response;
 import ru.experrt.entity.NoteSummByDays;
+import ru.experrt.objects.DateForMainTable;
+import ru.experrt.objects.Response;
 import ru.experrt.services.DataMainTableService;
 import ru.experrt.services.NoteSummByDaysService;
 
@@ -20,14 +21,18 @@ public class NoteSummByDaysController {
 	@Autowired
 	DataMainTableService dmtService;
 	
+	@Autowired
+	DateForMainTable dfmTable;
+	
 	@PostMapping(value = "/newNoteByDays")
 	public void createNewNote(@RequestBody NoteSummByDays nsbd) {
-		nsbdService.save(nsbd);
+		nsbdService.save(nsbd);		
 	}
 	
 	@GetMapping(value = "/updateMainTable")
 	public Response getDataForMainTable() {
-		Response response = new Response("Done", dmtService.getList());
+		Response response = new Response("Done", dmtService.addData());
+		
 		return response;
 	}
 	

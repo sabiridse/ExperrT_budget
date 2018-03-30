@@ -1,4 +1,4 @@
-package ru.experrt;
+package ru.experrt.objects;
 
 public class Response {
 
