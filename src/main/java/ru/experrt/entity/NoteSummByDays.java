@@ -31,6 +31,8 @@ public class NoteSummByDays {
 	
 	@Column(name = "OTHERS")
 	private String others;
+	
+	private int shablon;
 
 	public int getId() {
 		return id;
@@ -70,6 +72,14 @@ public class NoteSummByDays {
 
 	public void setOthers(String others) {
 		this.others = others;
+	}
+
+	public int getShablon() {
+		return shablon;
+	}
+
+	public void setShablon(int shablon) {
+		this.shablon = shablon;
 	}
 	
 	

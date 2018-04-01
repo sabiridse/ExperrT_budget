@@ -50,9 +50,12 @@ $( document ).ready(function() {
 		    	});
 		    $("#addNewSumm").click(
 		    		function(){
-		    		addNewNoteByDays();
+		    		addNewNoteByDays(1);
 		    	});
-		    
+		    $("#addShablon").click(
+		    		function(){
+		    		addNewNoteByDays(6);
+		    	});
 		    
 });
 
@@ -72,24 +75,52 @@ function addCategory(){
 		}) 		
 }
 
-function addNewNoteByDays(){
+function addNewNoteByDays(shablon){
 	var inputData = {
 		id: 0, 	
 		date: $('#newDate').val(),
 		category: $('#categorySelect option:selected').text(),
 		summ: $('#newSumm').val(),
-		others: $('#newOther').val()		
+		others: $('#newOther').val(),
+		shablon: shablon
 	}
 	$('#newSumm').val('');
 	$('#newOther').val('');
-		$.ajax({
-			url:'newNoteByDays',
-	        type:'POST',
-	        data : JSON.stringify(inputData),
-	        success: function(){
-	        	loadDataForMainTable();
-		    }
-		}) 		
+	
+	if(shablon==1)	{
+			$.ajax({
+				url:'newNoteByDays',
+		        type:'POST',
+		        data : JSON.stringify(inputData),
+		        success: function(){
+		        	loadDataForMainTable();
+			    }
+			})
+	}
+	if(shablon==6)	{
+		var choosedCategory = $('#categorySelect option:selected').text();
+		var defoultCategory1 = "продукты";
+		var defoultCategory2 = "алкоголь";
+		if(choosedCategory == defoultCategory1 || choosedCategory == defoultCategory2){
+			$.ajax({
+				url:'listNotesEvrDay',
+		        type:'POST',
+		        data : JSON.stringify(inputData),
+		        success: function(){
+		        	loadDataForMainTable();
+		       	}
+			})			
+		} else {
+			$.ajax({
+				url:'listNotesByDays',
+		        type:'POST',
+		        data : JSON.stringify(inputData),
+		        success: function(){
+		        	loadDataForMainTable();
+		        }
+			})
+		}			
+	}
 }
 
 function loadDataForMainTable(){	
@@ -102,9 +133,36 @@ function loadDataForMainTable(){
 	})	
 }
 
+function hotPointsLoad(){
+	$.ajax({
+		url:'updateHotPointsTable',
+        type:'GET',
+	    success: function(response){
+	    	updateHotPointsTable(response);
+	    }
+	})	
+	
+}
+
+function updateHotPointsTable(response){
+	$('.tr').remove();
+    for(i=0; i<response.data.length; i++){ 
+    	var ostatok = response.data[i].ostatok;
+    	if(ostatok < 1000){
+    		$("#tableHot").append('<tr class="tr" style="background: #FF0000"> <td>' 
+            		+ response.data[i].date + "</td> <td> "
+            		+ response.data[i].ostatok +" </td> </tr>");
+    	} else {
+    	$("#tableHot").append('<tr class="tr"> <td>' 
+        		+ response.data[i].date + "</td> <td> "
+        		+ response.data[i].ostatok +" </td> </tr>");
+    	}
+    }
+    $("#hotPointsTable").trigger('update');
+}
+
 function updateMainTable(response){
 	$('.tr').remove();
-	console.log(response.data.lenght);
     for(i=0; i<response.data.length; i++){                  
         $("#tableMain").append('<tr class="tr"> <td>' 
         		+ response.data[i].date + "</td> <td> "

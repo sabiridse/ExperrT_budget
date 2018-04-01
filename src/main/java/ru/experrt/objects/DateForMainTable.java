@@ -12,6 +12,7 @@ public class DateForMainTable {
 	private int rashod;
 	private int ostatok;
 	private String dayOfWeek;
+	
 	public String getDate() {
 		return date;
 	}
