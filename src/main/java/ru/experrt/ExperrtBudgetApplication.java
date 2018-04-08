@@ -13,6 +13,7 @@ public class ExperrtBudgetApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ExperrtBudgetApplication.class, args);
+		//System.out.println("test");
 	getStartPage();
 	}
 	
